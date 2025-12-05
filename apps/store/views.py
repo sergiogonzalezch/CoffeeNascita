@@ -4,10 +4,10 @@ from django.views.generic.base import TemplateView
 from django.views.generic import FormView
 from .forms import MenuItemForm, CategoryForm
 from django.urls import reverse_lazy
+from .models import MenuItem
 
 # Importing fake data for testing purposes
-# from store.util.test_scripts.fake_data import menu_list
-from apps.store.util.test_scripts.fake_data import menu_list
+# from .util.test_scripts.fake_data import menu_list
 
 
 # Create your views here.
@@ -29,7 +29,8 @@ class MenuItemListView(TemplateView):
     template_name = "menu_list.html"
 
     def get_context_data(self):
-        # menu_list = [{"name": "Espresso"}, {"name": "Cappuccino"}, {"name": "Latte"}]
+        queryset = MenuItem.objects.all()
+        menu_list = queryset
         return {"menu_list": menu_list}
 
 
