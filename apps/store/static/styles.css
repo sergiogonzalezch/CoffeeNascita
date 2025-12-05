@@ -286,10 +286,38 @@ p {
   font-size: 1em;
   font-weight: bold;
   transition: 0.2s ease;
-  display: block; /* Necesario */
-  margin: 20px auto 0; /* Centrado */
+  display: block;
+  /* Necesario */
+  margin: 20px auto 0;
+  /* Centrado */
 }
 
 .form-wrapper button:hover {
   background: #5d4037;
+}
+
+/* SELECT Category */
+.form-wrapper select[name="category"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #b8b8b8;
+  border-radius: 6px;
+  background: #fafafa;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Hover */
+.form-wrapper select[name="category"]:hover {
+  border-color: #8a8a8a;
+}
+
+/* Focus */
+.form-wrapper select[name="category"]:focus {
+  border-color: #3e2723;
+  outline: none;
+  background: #fff;
 }

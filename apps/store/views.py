@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic import FormView
-from .forms import MenuItemForm
+from .forms import MenuItemForm, CategoryForm
 from django.urls import reverse_lazy
 
 # Importing fake data for testing purposes
@@ -33,14 +33,25 @@ class MenuItemListView(TemplateView):
         return {"menu_list": menu_list}
 
 
-class MenuItemsFormView(FormView):
-    template_name = "add_edit_menu_item.html" 
-    form_class = MenuItemForm
-    success_url = reverse_lazy('add_menu_item')
+class CategoryFormView(FormView):
+    template_name = "add_edit_category.html"
+    form_class = CategoryForm
+    success_url = reverse_lazy("add_category")
 
     def form_valid(self, form):
         form.save()
-        return super().form_valid(form) 
+        return super().form_valid(form)
+
+
+class MenuItemsFormView(FormView):
+    template_name = "add_edit_menu_item.html"
+    form_class = MenuItemForm
+    success_url = reverse_lazy("add_menu_item")
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
 
 # Detail view
 def detail(request, *args, **kwargs):
