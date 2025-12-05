@@ -5,9 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee Home</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static './styles.css' %}">
+    <link rel="stylesheet" href="{% static './styles.css' %}" />
   </head>
+
   <body>
+    <nav class="navbar">
+      <div class="navbar-brand">Coffee Nascita</div>
+      <ul class="navbar-links">
+        <li><a href="/store/">Home</a></li>
+        <li><a href="/store/menu-list/">Menu</a></li>
+        {% comment %} <li><a href="/contact/">Contact</a></li> {% endcomment %}
+      </ul>
+      <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
+    </nav>
+
     <div id="content">{% block content %}{% endblock %}</div>
+
+    <script>
+      function toggleMenu() {
+        document.querySelector(".navbar-links").classList.toggle("active");
+      }
+    </script>
   </body>
 </html>
