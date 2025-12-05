@@ -1,14 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Menu</h1>
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+  <h2>Menu</h2>
+</header>
+
+<div class="container">
+  <h3>Our Coffee Selection</h3>
+
+  <div class="cards-grid">
     {% for item in menu_list %}
-        <li>{{ item.name }}</li>
+    <div class="card">
+
+      {% if item.photo_item %}
+      <img src="{{ item.photo_item.url }}" alt="{{ item.name }}">
+      {% endif %}
+
+      <h4 class="card-title">{{ item.name }}</h4>
+
+      <p class="card-description">{{ item.description }}</p>
+
+      {% if item.have_discount and item.discount_price %}
+      <p>
+        <span class="card-price-old">${{ item.price }}</span>
+        <span class="card-price-discount">${{ item.discount_price }}</span>
+      </p>
+      {% else %}
+      <p class="card-price">${{ item.price }}</p>
+      {% endif %}
+
+      <p class="card-category">Category: {{ item.category.name }}</p>
+
+    </div>
     {% endfor %}
-</body>
-</html>
+  </div>
+</div>
+
+{% endblock %}
