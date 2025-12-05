@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from django.views.generic import FormView
+from .forms import MenuItemForm
+from django.urls import reverse_lazy
 
 # Importing fake data for testing purposes
-from store.util.test_scripts.fake_data import menu_list
+# from store.util.test_scripts.fake_data import menu_list
+from apps.store.util.test_scripts.fake_data import menu_list
 
 
 # Create your views here.
@@ -28,6 +32,15 @@ class MenuItemListView(TemplateView):
         # menu_list = [{"name": "Espresso"}, {"name": "Cappuccino"}, {"name": "Latte"}]
         return {"menu_list": menu_list}
 
+
+class MenuItemsFormView(FormView):
+    template_name = "add_edit_menu_item.html" 
+    form_class = MenuItemForm
+    success_url = reverse_lazy('add_menu_item')
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form) 
 
 # Detail view
 def detail(request, *args, **kwargs):
