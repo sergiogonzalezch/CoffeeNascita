@@ -24,7 +24,7 @@ class MenuItem(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, verbose_name="Category")
     created_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name="Created At")
     updated_at = models.DateTimeField(auto_now=True, null=True, verbose_name="Updated At")
-    photo_item = models.ImageField(upload_to="menu_items/", blank=True, null=True, verbose_name="Photo Item")
+    photo_item = models.ImageField(upload_to="store/menu_item/", blank=True, null=True, verbose_name="Photo Item")
 
     def __str__(self):
         return f"{self.name} - ${self.price}"

@@ -47,7 +47,9 @@ class CategoryFormView(FormView):
 class MenuItemsFormView(FormView):
     template_name = "add_edit_menu_item.html"
     form_class = MenuItemForm
-    success_url = reverse_lazy("add_menu_item")
+    # success_url = reverse_lazy("add_menu_item")
+    success_url = reverse_lazy("menu_list")
+
 
     def form_valid(self, form):
         form.save()
