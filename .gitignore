@@ -356,5 +356,5 @@ GitHub.sublime-settings
 .history
 
 # Django Migrations
-*/migrations/*
-!*/migrations/__init__.py
+apps/*/migrations/*
+!apps/*/migrations/__init__.py
