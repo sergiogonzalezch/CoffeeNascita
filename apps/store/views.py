@@ -21,12 +21,12 @@ def index(request):
 #     context = {
 #         "menu_list": menu_list
 #     }
-#     return render(request, './menu_list.html', context)
+#     return render(request, './store/menu_list.html', context)
 
 
 # New class-based view
 class MenuItemListView(TemplateView):
-    template_name = "menu_list.html"
+    template_name = "store/menu_list.html"
 
     def get_context_data(self):
         queryset = MenuItem.objects.all()
@@ -35,7 +35,7 @@ class MenuItemListView(TemplateView):
 
 
 class CategoryFormView(FormView):
-    template_name = "add_edit_category.html"
+    template_name = "forms/add_edit_category.html"
     form_class = CategoryForm
     success_url = reverse_lazy("add_category")
 
@@ -45,7 +45,7 @@ class CategoryFormView(FormView):
 
 
 class MenuItemsFormView(FormView):
-    template_name = "add_edit_menu_item.html"
+    template_name = "forms/add_edit_menu_item.html"
     form_class = MenuItemForm
     # success_url = reverse_lazy("add_menu_item")
     success_url = reverse_lazy("menu_list")
