@@ -23,7 +23,11 @@
       </ul>
       <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
     </nav>
-
+    {% if user.is_authenticated%}
+      {{user.username}}
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
     <div id="content">{% block content %}{% endblock %}</div>
 
     <script>
