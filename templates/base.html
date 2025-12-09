@@ -5,34 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee Home</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    {% load static %}
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+
+    {% load static %} {% comment %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
+    {% endcomment %}
   </head>
 
-  <body>
-    <nav class="navbar">
-      <div class="navbar-brand">Coffee Nascita</div>
-      <ul class="navbar-links">
-        <li><a href="/store/">Home</a></li>
-        <li><a href="/store/menu-list/">Menu</a></li>
-        <li><a href="/store/add-menu-item/">Add Menu Item</a></li>
-        <li><a href="/store/add-category/">Add Category</a></li>
-        {% comment %}
-        <li><a href="/contact/">Contact</a></li>
-        {% endcomment %}
-      </ul>
-      <button class="navbar-toggle" onclick="toggleMenu()">☰</button>
-    </nav>
-    {% if user.is_authenticated%}
-      {{user.username}}
-    {% else %}
-      <a href="{% url 'login' %}">Login</a>
-    {% endif %}
-    <div id="content">{% block content %}{% endblock %}</div>
+  <body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+    <!-- Header -->
+
+    <header class="bg-white shadow-md">
+      <!-- Navbar -->
+      <nav
+        class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <a href="/store/" class="text-2xl font-bold text-amber-700"
+          >CoffeeNascita</a
+        >
+
+        <!-- Botón mobile -->
+        <button class="md:hidden text-3xl" onclick="toggleMenu()">☰</button>
+
+        <!-- Links -->
+        <ul
+          id="mobileMenu"
+          class="hidden md:flex space-x-6 text-gray-700 flex-col md:flex-row md:space-x-6 
+          absolute md:static bg-white md:bg-transparent left-0 top-16 w-full md:w-auto 
+          shadow md:shadow-none p-6 md:p-0"
+        >
+          <li><a href="/store/" class="hover:text-amber-600">Home</a></li>
+          <li>
+            <a href="/store/menu-list/" class="hover:text-amber-600">Menu</a>
+          </li>
+          <li>
+            <a href="/store/add-menu-item/" class="hover:text-amber-600"
+              >Add Menu Item</a
+            >
+          </li>
+          <li>
+            <a href="/store/add-category/" class="hover:text-amber-600"
+              >Add Category</a
+            >
+          </li>
+          <li>
+            {% if user.is_authenticated %} {{ user.username }} {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="max-w-7xl mx-auto px-6 py-10 flex-grow">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 py-6 text-center text-sm text-gray-600">
+      © 2025 CoffeeNascita
+    </footer>
 
     <script>
       function toggleMenu() {
-        document.querySelector(".navbar-links").classList.toggle("active");
+        document.getElementById("mobileMenu").classList.toggle("hidden");
       }
     </script>
   </body>
