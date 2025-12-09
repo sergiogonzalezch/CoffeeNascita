@@ -1,50 +1,34 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+  <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
 
-<link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+  <div class="form-wrapper-wide max-w-2xl mx-auto bg-white shadow-xl p-12 rounded-2xl border border-gray-100">
+    <h2 class="text-3xl font-bold text-center mb-8 text-amber-700 tracking-wide">Add Menu Item</h2>
 
-<div
-  class="form-wrapper-wide max-w-2xl mx-auto bg-white shadow-xl p-12 rounded-2xl border border-gray-100"
->
-  <h2 class="text-3xl font-bold text-center mb-8 text-amber-700 tracking-wide">
-    Add Menu Item
-  </h2>
+    <form action="{% url 'add_menu_item' %}" method="post" enctype="multipart/form-data" class="space-y-5">
+      {% csrf_token %}
 
-  <form
-    action="{% url 'add_menu_item' %}"
-    method="post"
-    enctype="multipart/form-data"
-    class="space-y-5"
-  >
-    {% csrf_token %}
+      <div class="form-styled">{{ form.as_p }}</div>
 
-    <div class="form-styled">{{ form.as_p }}</div>
+      <button type="submit" class="w-full py-3 bg-amber-700 text-white rounded-md hover:bg-amber-800 transition font-semibold shadow">Save</button>
+    </form>
+  </div>
 
-    <button
-      type="submit"
-      class="w-full py-3 bg-amber-700 text-white rounded-md hover:bg-amber-800 transition font-semibold shadow"
-    >
-      Save
-    </button>
-  </form>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const checkbox = document.getElementById("id_have_discount");
-    const discountField = document.getElementById("id_discount_price");
-
-    function toggleDiscount() {
-      if (checkbox.checked) {
-        discountField.removeAttribute("disabled");
-      } else {
-        discountField.setAttribute("disabled", true);
-        discountField.value = "";
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const checkbox = document.getElementById('id_have_discount')
+      const discountField = document.getElementById('id_discount_price')
+    
+      function toggleDiscount() {
+        if (checkbox.checked) {
+          discountField.removeAttribute('disabled')
+        } else {
+          discountField.setAttribute('disabled', true)
+          discountField.value = ''
+        }
       }
-    }
-
-    toggleDiscount();
-    checkbox.addEventListener("change", toggleDiscount);
-  });
-</script>
-
+    
+      toggleDiscount()
+      checkbox.addEventListener('change', toggleDiscount)
+    })
+  </script>
 {% endblock %}
