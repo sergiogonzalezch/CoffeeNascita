@@ -28,7 +28,8 @@
 }
 
 .form-styled textarea {
-    min-height: 120px;
+    height: 120px;
+    max-height: auto;
     resize: vertical;
 }
 
