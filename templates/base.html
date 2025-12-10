@@ -36,12 +36,12 @@
           <li>
             <a href="/store/menu-list/" class="hover:text-amber-600">Menu</a>
           </li>
-          <li>
+          {% comment %} <li>
             <a href="/store/add-menu-item/" class="hover:text-amber-600">Add Menu Item</a>
           </li>
           <li>
             <a href="/store/add-category/" class="hover:text-amber-600">Add Category</a>
-          </li>
+          </li> {% endcomment %}
 
           <li class="flex items-center space-x-3">
             {% if user.is_authenticated %}
