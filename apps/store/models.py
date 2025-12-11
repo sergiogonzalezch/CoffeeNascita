@@ -49,7 +49,8 @@ class MenuItem(models.Model):
 class Order(models.Model):
     # Many to One relationship
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
-    status = models.CharField(max_length=100, null=True, verbose_name="Status")
+    # status = models.CharField(max_length=100, null=True, verbose_name="Status")
+    is_completed = models.BooleanField(default=False, verbose_name="Is Completed")
     delivered_at = models.DateTimeField(
         null=True, blank=True, verbose_name="Delivered At"
     )

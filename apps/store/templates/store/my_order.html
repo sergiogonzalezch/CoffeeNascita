@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+  {{ order.user.username }}
+  {{ order.created_at|date }}
+  {% debug order %}
+{% endblock %}

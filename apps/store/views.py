@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from .forms import MenuItemForm, CategoryForm
 from django.urls import reverse_lazy
-from .models import MenuItem
+from .models import MenuItem, Order
 
 # Importing fake data for testing purposes
 # from .util.test_scripts.fake_data import menu_list
@@ -55,6 +55,13 @@ class MenuItemsFormView(FormView):
         form.save()
         return super().form_valid(form)
 
+class MyOrderView(DetailView):
+    model = Order
+    template_name = "store/my_order.html"
+    context_object_name = "order"
+    def get_object(self, queryset=None):
+        return Order.objects.filter(is_completed=True).first()
+    
 
 # Detail view
 def detail(request, *args, **kwargs):
