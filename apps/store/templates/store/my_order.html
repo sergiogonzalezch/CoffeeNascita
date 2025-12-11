@@ -2,5 +2,12 @@
 {% block content %}
   {{ order.user.username }}
   {{ order.created_at|date }}
-  {% debug order %}
+  {% for order_menu_item in order.ordermenuitem_set.all %}
+    {{order_menu_item.menuitem.name}}
+    {{order_menu_item.menuitem.price}}
+    {{order_menu_item.quantity}}
+  {%empty%} 
+    No elements in order
+  {% endfor%}
+  {% comment %} {% debug order %} {% endcomment %}
 {% endblock %}
