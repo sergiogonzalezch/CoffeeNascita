@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, DetailView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import MenuItemForm, CategoryForm
+from .forms import MenuItemForm, CategoryForm, OrderMenuItemForm
 from .models import MenuItem, Order
 
 # Importing fake data for testing purposes
@@ -44,7 +44,6 @@ class CategoryFormView(FormView):
         form.save()
         return super().form_valid(form)
 
-
 class MenuItemsFormView(FormView):
     template_name = "forms/add_edit_menu_item.html"
     form_class = MenuItemForm
@@ -61,8 +60,22 @@ class MyOrderView(LoginRequiredMixin, DetailView):
     template_name = "store/my_order.html"
     context_object_name = "order"
     def get_object(self, queryset=None):
-        return Order.objects.filter(is_completed=True, user=self.request.user).first()
+        return Order.objects.filter(is_completed=False,user=self.request.user).first()
     
+
+class CreaterOrderMenuItemView(LoginRequiredMixin, CreateView):
+    template_name = "store/create_order_menu_item.html"
+    form_class = OrderMenuItemForm
+    success_url = reverse_lazy("my_order")
+    def form_valid(self, form):
+        order, _ = Order.objects.get_or_create(
+            is_completed=False,
+            user=self.request.user
+        )
+        form.instance.order = order
+        form.instance.quantity = 1
+        form.save()
+        return super().form_valid(form)
 
 # Detail view
 def detail(request, *args, **kwargs):

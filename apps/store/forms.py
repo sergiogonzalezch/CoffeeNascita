@@ -1,5 +1,5 @@
 from django import forms
-from .models import MenuItem, Category
+from .models import MenuItem, Category, OrderMenuItem
 
 
 class CategoryForm(forms.Form):
@@ -37,3 +37,8 @@ class MenuItemForm(forms.Form):
             category=self.cleaned_data["category"],
             photo_item=self.cleaned_data["photo_item"],
         )
+
+class OrderMenuItemForm(forms.ModelForm):
+    class Meta:
+        model = OrderMenuItem
+        fields = ['menu_item']
