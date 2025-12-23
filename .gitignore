@@ -364,4 +364,4 @@ apps/*/migrations/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-/staticfiles/
+staticfiles/
