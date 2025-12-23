@@ -29,8 +29,8 @@ SECRET_KEY = "django-insecure-u$f0_g&uqsma*%62g$rk!^s)t&=-&*xc9r&!%g2cz5l5vdq55=
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
-    'coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com'
+    "localhost",
+    "coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com",
 ]
 
 # Application definition
@@ -130,6 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
