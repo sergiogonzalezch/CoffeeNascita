@@ -6,7 +6,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import MenuItemForm, CategoryForm, OrderMenuItemForm
 from .models import MenuItem, Order
-
+from rest_framework.views import APIView
+from .serializers import MenuitemSerializer
+from rest_framework.response import Response
 # Importing fake data for testing purposes
 # from .util.test_scripts.fake_data import menu_list
 
@@ -82,3 +84,11 @@ def detail(request, *args, **kwargs):
     print(f"ARGS: {args}")
     print(f"KWARGS: {kwargs}")
     return HttpResponse(f"Detail view for item {kwargs.get('item_id')}")
+
+class MenuItemsListApiView(APIView):
+    authentication_classes = []
+    permission_classes = []
+    def get(self, request):
+        queryset = MenuItem.objects.all()
+        serializer = MenuitemSerializer(queryset, many=True)
+        return Response(serializer.data)

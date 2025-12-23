@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import index, detail, MenuItemListView, MenuItemsFormView, CategoryFormView, MyOrderView, CreaterOrderMenuItemView
+from .views import MenuItemsListApiView
 
 urlpatterns = [
     path("", index, name="index"),
@@ -9,4 +10,5 @@ urlpatterns = [
     path("add-menu-item/", MenuItemsFormView.as_view(), name="add_menu_item"),
     path("my-order/", MyOrderView.as_view(), name="my_order"),
     path("add-order-menu-item/", CreaterOrderMenuItemView.as_view(), name="add_order_menu_item"),
+    path("api/menu-items/", MenuItemsListApiView.as_view(), name="api_menu_items"),
 ]
