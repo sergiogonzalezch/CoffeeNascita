@@ -38,7 +38,8 @@ class MenuItemForm(forms.Form):
             photo_item=self.cleaned_data["photo_item"],
         )
 
+
 class OrderMenuItemForm(forms.ModelForm):
     class Meta:
         model = OrderMenuItem
-        fields = ['menu_item']
+        fields = ["menu_item"]

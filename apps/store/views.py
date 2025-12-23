@@ -44,38 +44,41 @@ class CategoryFormView(FormView):
         form.save()
         return super().form_valid(form)
 
+
 class MenuItemsFormView(FormView):
     template_name = "forms/add_edit_menu_item.html"
     form_class = MenuItemForm
     # success_url = reverse_lazy("add_menu_item")
     success_url = reverse_lazy("menu_list")
 
-
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
 
 class MyOrderView(LoginRequiredMixin, DetailView):
     model = Order
     template_name = "store/my_order.html"
     context_object_name = "order"
+
     def get_object(self, queryset=None):
-        return Order.objects.filter(is_completed=False,user=self.request.user).first()
-    
+        return Order.objects.filter(is_completed=False, user=self.request.user).first()
+
 
 class CreaterOrderMenuItemView(LoginRequiredMixin, CreateView):
     template_name = "store/create_order_menu_item.html"
     form_class = OrderMenuItemForm
     success_url = reverse_lazy("my_order")
+
     def form_valid(self, form):
         order, _ = Order.objects.get_or_create(
-            is_completed=False,
-            user=self.request.user
+            is_completed=False, user=self.request.user
         )
         form.instance.order = order
         form.instance.quantity = 1
         form.save()
         return super().form_valid(form)
+
 
 # Detail view
 def detail(request, *args, **kwargs):

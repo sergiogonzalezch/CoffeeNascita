@@ -34,13 +34,12 @@ class StoreViewTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)
         # breakpoint()
-        self.assertEqual(response.url, '/users/login/?next=/store/my-order/')
-    
+        self.assertEqual(response.url, "/users/login/?next=/store/my-order/")
+
     def test_logged_user_should_redirect(self):
         url = reverse("my_order")
         user = get_user_model().objects.create_user(
-            username='testuser',
-            password='testpass'
+            username="testuser", password="testpass"
         )
         self.client.force_login(user)
         response = self.client.get(url)

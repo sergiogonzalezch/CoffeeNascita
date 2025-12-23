@@ -1,4 +1,8 @@
-category_coffee_list = [{"name": "Cold Drink"}, {"name": "Hot Drink"}, {"name": "Snacks"}] 
+category_coffee_list = [
+    {"name": "Cold Drink"},
+    {"name": "Hot Drink"},
+    {"name": "Snacks"},
+]
 
 menu_list = [
     {
@@ -7,7 +11,7 @@ menu_list = [
         "price": 2.50,
         "have_discount": False,
         "photo_item": None,
-        "category": category_coffee_list[1]
+        "category": category_coffee_list[1],
     },
     {
         "name": "Cappuccino",
@@ -16,7 +20,7 @@ menu_list = [
         "have_discount": True,
         "discount_price": 2.80,
         "photo_item": None,
-        "category": category_coffee_list[1]
+        "category": category_coffee_list[1],
     },
     {
         "name": "Latte",
@@ -24,6 +28,6 @@ menu_list = [
         "price": 3.00,
         "have_discount": False,
         "photo_item": None,
-        "category": category_coffee_list[1]
-    }
+        "category": category_coffee_list[1],
+    },
 ]
