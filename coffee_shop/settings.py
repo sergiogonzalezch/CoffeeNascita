@@ -33,10 +33,11 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default="django-insecure-placeholder-key")
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 ALLOWED_HOSTS = [
-    ".elasticbeanstalk.com",
-    "localhost",
-    "127.0.0.1",
-    "172.31.23.217",
+    "*"
+    # ".elasticbeanstalk.com",
+    # "localhost",
+    # "127.0.0.1",
+    # "172.31.23.217",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
