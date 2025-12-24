@@ -18,7 +18,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
-
 env_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(env_file):
     environ.Env.read_env(env_file)
@@ -95,16 +94,17 @@ WSGI_APPLICATION = "coffee_shop.wsgi.application"
 
 
 DATABASES = {
-    "default": {
-        # "ENGINE": "django.db.backends.sqlite3",
-        # "NAME": BASE_DIR / "db.sqlite3",
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DJANGO_DB_NAME"),
-        "USER": env("DJANGO_DB_USER"),
-        "PASSWORD": env("DJANGO_DB_PASSWORD"),
-        "HOST": env("DJANGO_DB_HOST"),
-        "PORT": env("DJANGO_DB_PORT"),
-    }
+    # "default": {
+    #     # "ENGINE": "django.db.backends.sqlite3",
+    #     # "NAME": BASE_DIR / "db.sqlite3",
+    #     "ENGINE": env("DJANGO_DB_ENGINE"),
+    #     "NAME": env("DJANGO_DB_NAME"),
+    #     "USER": env("DJANGO_DB_USER"),
+    #     "PASSWORD": env("DJANGO_DB_PASSWORD"),
+    #     "HOST": env("DJANGO_DB_HOST"),
+    #     "PORT": env("DJANGO_DB_PORT"),
+    # }
+    "default": env.db("DJANGO_DB_URL")
 }
 
 
