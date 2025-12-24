@@ -33,14 +33,13 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default="django-insecure-placeholder-key")
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 ALLOWED_HOSTS = [
-    "coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com/",
     "localhost",
     "127.0.0.1",
-    "172.31.23.217",
+    "coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com/",
+    "http://coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com",
 ]
 
 # Application definition
