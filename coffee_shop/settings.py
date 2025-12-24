@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com",
+    "https://coffee-shop-production.eba-bxcuq2r8.us-east-1.elasticbeanstalk.com",
 ]
 
 # Application definition
