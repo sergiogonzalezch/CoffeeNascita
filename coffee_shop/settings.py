@@ -98,11 +98,11 @@ DATABASES = {
         # "ENGINE": "django.db.backends.sqlite3",
         # "NAME": BASE_DIR / "db.sqlite3",
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env.str("DJANGO_DB_NAME"),
-        "USER": env.str("DJANGO_DB_USER"),
-        "PASSWORD": env.str("DJANGO_DB_PASSWORD"),
-        "HOST": env.str("DJANGO_DB_HOST"),
-        "PORT": env.str("DJANGO_DB_PORT"),
+        "NAME": env("DJANGO_DB_NAME"),
+        "USER": env("DJANGO_DB_USER"),
+        "PASSWORD": env("DJANGO_DB_PASSWORD"),
+        "HOST": env("DJANGO_DB_HOST"),
+        "PORT": env("DJANGO_DB_PORT"),
     }
 }
 
@@ -145,14 +145,30 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+DEBUG = env.bool("DJANGO_DEBUG", default=False)
+
+if DEBUG:
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+    }
+else:
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+    }
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
