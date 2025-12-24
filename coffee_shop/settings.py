@@ -34,12 +34,12 @@ DEBUG = env.bool("DJANGO_DEBUG", default=False)
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    # "coffee-shop-prod.eba-ztwppiym.us-east-1.elasticbeanstalk.com",
+    "coffee-shop-prod.eba-j5jyagpn.us-east-1.elasticbeanstalk.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    # "http://coffee-shop-prod.eba-ztwppiym.us-east-1.elasticbeanstalk.com",
-    # "https://coffee-shop-prod.eba-ztwppiym.us-east-1.elasticbeanstalk.com",
+    "http://coffee-shop-prod.eba-j5jyagpn.us-east-1.elasticbeanstalk.com",
+    "https://coffee-shop-prod.eba-j5jyagpn.us-east-1.elasticbeanstalk.com",
 ]
 
 # Application definition
